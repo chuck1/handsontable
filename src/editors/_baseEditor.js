@@ -121,7 +121,18 @@ BaseEditor.prototype.beginEditing = function(initialValue, event) {
   this.instance.view.render();
   this.state = Handsontable.EditorState.EDITING;
 
-  initialValue = typeof initialValue == 'string' ? initialValue : this.originalValue;
+  if (typeof initialValue == 'string') {
+    //initialValue = initialValue;
+  } else {
+    console.log('beginEditing');
+    console.log('initialValue is not string. use this.originalValue');
+    console.log('originalValue=',this.originalValue);
+    var j = JSON.parse(this.originalValue);
+    console.log('originalValue as json=',j);
+    //initialValue = this.originalValue;
+    initialValue = j[0];
+  }
+
   this.setValue(stringify(initialValue));
 
   this.open(event);
