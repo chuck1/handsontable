@@ -355,6 +355,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
      * @returns {Object|undefined} ending td in pasted area (only if any cell was changed).
      */
     populateFromArray: function(start, input, end, source, method, direction, deltas) {
+      console.log('populateFromArray');
       var r, rlen, c, clen, setData = [], current = {};
 
       rlen = input.length;
@@ -518,7 +519,9 @@ Handsontable.Core = function Core(rootElement, userSettings) {
                 }
 
               } else if (orgValue !== null && typeof orgValue === 'object') {
-                pushData = false;
+                /* what is the purpose of this? */
+                console.log('previously this condition resulted in pushData=false');
+                //pushData = false;
               }
               if (pushData) {
                 setData.push([current.row, current.col, value]);
@@ -1067,6 +1070,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
    * @fires Hooks#afterChange
    */
   function applyChanges(changes, source) {
+    console.log('apply changes',changes,source);
     let i = changes.length - 1;
 
     if (i < 0) {
@@ -1194,6 +1198,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
    * @param {String} [source] String that identifies how this change will be described in the changes array (useful in onAfterChange or onBeforeChange callback).
    */
   this.setDataAtCell = function(row, col, value, source) {
+    console.log('setDataAtCell',row,col,value,source);
     var
         input = setDataInputToArray(row, col, value),
         i,
@@ -1221,7 +1226,7 @@ Handsontable.Core = function Core(rootElement, userSettings) {
       source = col;
     }
 
-    instance.runHooks('afterSetDataAtCell', changes, source);
+    instance.runHooks('afterSetDataAtCell', changes, source, [row, col, value, source]);
 
     validateChanges(changes, source, function() {
       applyChanges(changes, source);
