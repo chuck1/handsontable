@@ -31,3 +31,9 @@ Classes
 
 .. _numpy array: https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html
 
+
+Testing Autodoc
+===============
+
+.. automodule:: sheets.helper
+
