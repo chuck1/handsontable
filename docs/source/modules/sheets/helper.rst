@@ -38,3 +38,6 @@ Testing Autodoc
 .. automodule:: sheets.helper
    :members:
 
+.. autoclass:: sheets.helper.CellHelper
+   :members:
+
