@@ -36,4 +36,5 @@ Testing Autodoc
 ===============
 
 .. automodule:: sheets.helper
+   :members:
 
