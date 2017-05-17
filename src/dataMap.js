@@ -506,7 +506,9 @@ DataMap.prototype.filterData = function(index, amount) {
  * @param {Number} prop
  */
 DataMap.prototype.get = function(row, prop) {
-  row = Handsontable.hooks.run(this.instance, 'modifyRow', row);
+  console.log('dataMap get');
+
+  row = Handsontable.hooks.run(this.instance, 'modifyRow', row, prop);
 
   let dataRow = this.dataSource[row];
   // TODO: To remove, use 'modifyData' hook instead (see below)
@@ -592,7 +594,9 @@ DataMap.prototype.getCopyable = function(row, prop) {
  * @param {String} [source] Source of hook runner.
  */
 DataMap.prototype.set = function(row, prop, value, source) {
-  row = Handsontable.hooks.run(this.instance, 'modifyRow', row, source || 'datamapGet');
+  console.log('dataMap set');
+
+  row = Handsontable.hooks.run(this.instance, 'modifyRow', row, source || 'datamapGet', value);
 
   let dataRow = this.dataSource[row];
   // TODO: To remove, use 'modifyData' hook instead (see below)

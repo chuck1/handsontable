@@ -121,16 +121,20 @@ BaseEditor.prototype.beginEditing = function(initialValue, event) {
   this.instance.view.render();
   this.state = Handsontable.EditorState.EDITING;
 
+  var initialValueOld = initialValue;
+
+  console.log('beginEditing');
   if (typeof initialValue == 'string') {
     //initialValue = initialValue;
   } else {
-    console.log('beginEditing');
     console.log('initialValue is not string. use this.originalValue');
-    console.log('originalValue=',this.originalValue);
-    var j = JSON.parse(this.originalValue);
-    console.log('originalValue as json=',j);
+    console.log('originalValue:');
+    console.log(this.originalValue);
+    //var j = JSON.parse(this.originalValue);
+    //console.log('originalValue as json=',j);
+    
     //initialValue = this.originalValue;
-    initialValue = j[0];
+    initialValue = this.originalValue[0];
   }
 
   this.setValue(stringify(initialValue));
@@ -142,7 +146,7 @@ BaseEditor.prototype.beginEditing = function(initialValue, event) {
   // only rerender the selections (FillHandle should disappear when beginediting is triggered)
   this.instance.view.render();
 
-  this.instance.runHooks('afterBeginEditing', this.row, this.col);
+  this.instance.runHooks('afterBeginEditing', this.row, this.col, initialValueOld, initialValue, this.originalValue);
 };
 
 BaseEditor.prototype.finishEditing = function(restoreOriginalValue, ctrlDown, callback) {
