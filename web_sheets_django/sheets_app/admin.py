@@ -4,5 +4,10 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    #fields = ('book_id', 'book_name', 'user_creator', 'is_demo')
+    list_display = ('pk', 'book_id', 'book_name', 'user_creator', 'is_demo')
+    pass
+
+admin.site.register(Book, BookAdmin)
 

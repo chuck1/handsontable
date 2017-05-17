@@ -10,6 +10,7 @@ class Book(models.Model):
             settings.AUTH_USER_MODEL, related_name='book_user_creator', null=True)
     is_demo = models.BooleanField()
 
+
 class Dummy(models.Model): pass
 
 
