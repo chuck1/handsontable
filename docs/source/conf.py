@@ -18,7 +18,9 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../sheets'))
+sys.path.insert(0, os.path.abspath('../../storage_pkg'))
+sys.path.insert(0, os.path.abspath('../../sheets_pkg'))
+sys.path.insert(0, os.path.abspath('../../sheets_backend_pkg'))
 
 # -- General configuration ------------------------------------------------
 
